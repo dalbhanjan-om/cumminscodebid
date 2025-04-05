@@ -134,30 +134,6 @@ function Home() {
 
       {explorerContent}
 
-      {/* Features Section */}
-      <div className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Choose TravelGuild?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6">
-              <Globe className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-3">Global Network</h3>
-              <p className="text-gray-600">Access to exclusive destinations and local experiences worldwide.</p>
-            </div>
-            <div className="text-center p-6">
-              <Shield className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-3">Trusted Service</h3>
-              <p className="text-gray-600">Verified partners and secure booking guarantee.</p>
-            </div>
-            <div className="text-center p-6">
-              <Users className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-3">Expert Guides</h3>
-              <p className="text-gray-600">Professional local guides for authentic experiences.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Featured Destinations */}
       <div className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
@@ -188,6 +164,15 @@ function Home() {
                 </div>
               </div>
             ))}
+          </div>
+          <div className="text-center mt-12">
+            <Link 
+              to="/destination" 
+              className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-150"
+            >
+              Discover More Destinations
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
           </div>
         </div>
       </div>
