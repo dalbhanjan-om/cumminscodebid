@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ArrowRight, Globe, Shield, Users, Search, MapPin, Hotel, Utensils, Map, Info } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 function Home() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -90,6 +92,7 @@ function Home() {
 
   return (
     <div>
+
       {/* Hero Section */}
       <div 
         className="relative h-[600px] bg-cover bg-center"
@@ -132,7 +135,7 @@ function Home() {
         </div>
       </div>
 
-      {explorerContent}
+
 
       {/* Featured Destinations */}
       <div className="py-20 bg-gray-50">
@@ -143,24 +146,42 @@ function Home() {
               {
                 image: "https://images.unsplash.com/photo-1525874684015-58379d421a52?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
                 title: "Paris, France",
-                description: "The City of Light awaits with its iconic landmarks and charming streets."
+                description: "The City of Light awaits with its iconic landmarks and charming streets.",
+                price: "$1299",
+                plan: "Premium"
               },
               {
                 image: "https://images.unsplash.com/photo-1533050487297-09b450131914?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
                 title: "Tokyo, Japan",
-                description: "Experience the perfect blend of tradition and modern innovation."
+                description: "Experience the perfect blend of tradition and modern innovation.",
+                price: "$1499",
+                plan: "Premium Plus"
               },
               {
                 image: "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
                 title: "Santorini, Greece",
-                description: "Discover whitewashed buildings and breathtaking Mediterranean views."
+                description: "Discover whitewashed buildings and breathtaking Mediterranean views.",
+                price: "$999",
+                plan: "Standard"
               }
             ].map((destination, index) => (
               <div key={index} className="bg-white rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-200">
                 <img src={destination.image} alt={destination.title} className="w-full h-48 object-cover" />
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-2">{destination.title}</h3>
-                  <p className="text-gray-600">{destination.description}</p>
+                  <p className="text-gray-600 mb-4">{destination.description}</p>
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <span className="text-blue-600 font-bold text-lg">{destination.price}</span>
+                      <span className="text-gray-500 text-sm ml-2">({destination.plan})</span>
+                    </div>
+                    <Link 
+                      to={`/plan/${destination.plan.toLowerCase()}`}
+                      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
+                    >
+                      View Plan
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}
@@ -176,6 +197,26 @@ function Home() {
           </div>
         </div>
       </div>
+
+      {/* Subscription Plans Section */}
+      <div className="py-20 bg-blue-950 text-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold mb-6">Unlock Premium Travel Benefits</h2>
+            <p className="text-blue-200 text-lg mb-8">
+              Get exclusive access to special deals, personalized travel recommendations, and premium support with our subscription plans.
+            </p>
+            <Link 
+              to="/pricing" 
+              className="inline-flex items-center bg-white text-blue-900 hover:bg-blue-50 font-bold py-4 px-8 rounded-lg transition duration-150 shadow-lg"
+            >
+              View Subscription Plans
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 }
