@@ -126,16 +126,47 @@ function Home() {
                 </button>
               </div>
             </form>
-
-            <Link to="/pricing" className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg mt-8 transition duration-150">
-              Start Your Journey
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
           </div>
         </div>
       </div>
 
+      {/* Why Choose Wanderlust Section */}
+      <div className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Why Choose Wanderlust</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Join thousands of satisfied travelers who have discovered the world with our expert guidance and support.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center p-6">
+              <Globe className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold mb-3">Global Coverage</h3>
+              <p className="text-gray-600">
+                Access to destinations worldwide with local insights and authentic experiences.
+              </p>
+            </div>
 
+            <div className="text-center p-6">
+              <Shield className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold mb-3">Trusted Service</h3>
+              <p className="text-gray-600">
+                24/7 support and verified reviews from our community of travelers.
+              </p>
+            </div>
+
+            <div className="text-center p-6">
+              <Users className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold mb-3">Personalized Experience</h3>
+              <p className="text-gray-600">
+                Customized travel plans tailored to your preferences and interests.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Featured Destinations */}
       <div className="py-20 bg-gray-50">
