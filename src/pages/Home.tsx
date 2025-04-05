@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, Globe, Shield, Users, Search, MapPin } from 'lucide-react';
+import { ArrowRight, Globe, Shield, Users, Search, MapPin, Hotel, Utensils, Map, Info } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 function Home() {
@@ -12,6 +12,81 @@ function Home() {
       navigate(`/destination?q=${encodeURIComponent(searchQuery)}`);
     }
   };
+
+  const [activeTab, setActiveTab] = useState('overview');
+  const [selectedTravelerType, setSelectedTravelerType] = useState('all');
+
+  const travelerTypes = [
+    { id: 'all', label: 'All Travelers' },
+    { id: 'solo', label: 'Solo Traveler' },
+    { id: 'couple', label: 'Couples' },
+    { id: 'family', label: 'Family' },
+    { id: 'group', label: 'Group' }
+  ];
+
+  const explorerContent = (
+    <div className="py-16 bg-white">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex flex-wrap gap-4 mb-8 border-b">
+          {['Overview', 'Attractions', 'Food & Dining', 'Practical Info'].map(tab => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab.toLowerCase())}
+              className={`px-6 py-3 font-medium ${
+                activeTab === tab.toLowerCase()
+                  ? 'border-b-2 border-blue-600 text-blue-600'
+                  : 'text-gray-600'
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        <div className="mb-8">
+          <h3 className="text-xl font-semibold mb-4">Traveler Type</h3>
+          <div className="flex flex-wrap gap-4">
+            {travelerTypes.map(type => (
+              <button
+                key={type.id}
+                onClick={() => setSelectedTravelerType(type.id)}
+                className={`px-4 py-2 rounded-full ${
+                  selectedTravelerType === type.id
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                {type.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <Hotel className="h-8 w-8 text-blue-600 mb-4" />
+            <h3 className="text-xl font-semibold mb-3">Accommodations</h3>
+            <p className="text-gray-600 mb-4">Find perfect stays from luxury hotels to cozy hostels.</p>
+            <Link to="/accommodations" className="text-blue-600 hover:underline">View Options →</Link>
+          </div>
+          
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <Map className="h-8 w-8 text-blue-600 mb-4" />
+            <h3 className="text-xl font-semibold mb-3">Must Visit Places</h3>
+            <p className="text-gray-600 mb-4">Discover iconic landmarks and hidden gems.</p>
+            <Link to="/attractions" className="text-blue-600 hover:underline">Explore Places →</Link>
+          </div>
+          
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <Info className="h-8 w-8 text-blue-600 mb-4" />
+            <h3 className="text-xl font-semibold mb-3">Travel Tips</h3>
+            <p className="text-gray-600 mb-4">Expert advice for a perfect trip.</p>
+            <Link to="/tips" className="text-blue-600 hover:underline">Read More →</Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div>
@@ -56,6 +131,8 @@ function Home() {
           </div>
         </div>
       </div>
+
+      {explorerContent}
 
       {/* Features Section */}
       <div className="py-20 bg-white">

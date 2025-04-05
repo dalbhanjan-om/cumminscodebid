@@ -7,6 +7,8 @@ import Search from './pages/Search';
 import Login from './pages/Login';
 import Pricing from './pages/Pricing';
 import DestinationDetails from './pages/DestinationDetails';
+import CreatorDashboard from './pages/creator/Dashboard';
+import CreateBlog from './pages/creator/CreateBlog';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -89,6 +91,8 @@ function App() {
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/destination" element={<DestinationDetails />} />
+            <Route path="/creator/dashboard" element={<CreatorDashboard />} />
+            <Route path="/creator/create-blog" element={<CreateBlog />} />
           </Routes>
         </main>
 
