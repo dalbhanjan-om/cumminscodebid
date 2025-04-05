@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Search from './pages/Search';
 import Login from './pages/Login';
 import Pricing from './pages/Pricing';
+import DestinationDetails from './pages/DestinationDetails';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -87,6 +88,7 @@ function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/destination" element={<DestinationDetails />} />
           </Routes>
         </main>
 
@@ -138,4 +140,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

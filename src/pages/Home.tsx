@@ -1,8 +1,18 @@
-import React from 'react';
-import { ArrowRight, Globe, Shield, Users } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { ArrowRight, Globe, Shield, Users, Search, MapPin } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Home() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/destination?q=${encodeURIComponent(searchQuery)}`);
+    }
+  };
+
   return (
     <div>
       {/* Hero Section */}
@@ -13,11 +23,33 @@ function Home() {
         }}
       >
         <div className="absolute inset-0 bg-blue-900/60"></div>
-        <div className="relative max-w-7xl mx-auto px-4 h-full flex items-center">
-          <div className="text-white">
+        <div className="relative max-w-7xl mx-auto px-4 h-full flex flex-col items-center justify-center">
+          <div className="text-white text-center max-w-3xl">
             <h1 className="text-5xl font-bold mb-6">Explore the World with TravelGuild</h1>
-            <p className="text-xl mb-8 max-w-2xl">Join our exclusive travel community and discover breathtaking destinations with expert-curated experiences.</p>
-            <Link to="/pricing" className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg">
+            <p className="text-xl mb-8">Join our exclusive travel community and discover breathtaking destinations with expert-curated experiences.</p>
+            
+            {/* Search Bar */}
+            <form onSubmit={handleSearch} className="w-full max-w-2xl mx-auto mb-8">
+              <div className="relative">
+                <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Where would you like to go?"
+                  className="w-full pl-12 pr-20 py-4 rounded-full text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <button
+                  type="submit"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition duration-150 flex items-center"
+                >
+                  <Search className="h-5 w-5 mr-2" />
+                  Search
+                </button>
+              </div>
+            </form>
+
+            <Link to="/pricing" className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg mt-8 transition duration-150">
               Start Your Journey
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
@@ -71,7 +103,7 @@ function Home() {
                 description: "Discover whitewashed buildings and breathtaking Mediterranean views."
               }
             ].map((destination, index) => (
-              <div key={index} className="bg-white rounded-lg overflow-hidden shadow-lg">
+              <div key={index} className="bg-white rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-200">
                 <img src={destination.image} alt={destination.title} className="w-full h-48 object-cover" />
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-2">{destination.title}</h3>
