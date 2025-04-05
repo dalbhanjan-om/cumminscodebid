@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Search as SearchIcon, MapPin, Calendar, Users } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+
 
 function SearchPage() {
   const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+
 
   const destinations = [
     {
@@ -25,11 +29,19 @@ function SearchPage() {
     }
   ];
 
+
+  const handleViewDetails = (destination) => {
+    navigate(`/destination/${encodeURIComponent(destination.title)}`, {
+      state: { destination }
+    });
+  };
+
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
       <div className="mb-12">
         <h1 className="text-4xl font-bold text-center mb-8">Find Your Perfect Destination</h1>
-        
+       
         {/* Search Filters */}
         <div className="bg-white p-6 rounded-lg shadow-lg">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -67,6 +79,7 @@ function SearchPage() {
         </div>
       </div>
 
+
       {/* Search Results */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {destinations.map((destination, index) => (
@@ -77,7 +90,10 @@ function SearchPage() {
               <p className="text-gray-600 mb-4">{destination.description}</p>
               <div className="flex items-center justify-between">
                 <span className="text-2xl font-bold text-blue-600">{destination.price}</span>
-                <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition duration-150">
+                <button
+                  onClick={() => handleViewDetails(destination)}
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition duration-150"
+                >
                   View Details
                 </button>
               </div>
@@ -89,4 +105,6 @@ function SearchPage() {
   );
 }
 
+
 export default SearchPage;
+
