@@ -9,6 +9,8 @@ import Pricing from './pages/Pricing';
 import DestinationDetails from './pages/DestinationDetails';
 import DestinationTemplate from './components/DestinationTemplate.tsx';
 import CreatorDashboard from './pages/creator/Dashboard';
+import ComparisonResults from './pages/ComparisonResults';
+
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/destination/:title" element={<DestinationTemplate />} />
             <Route path="/creator/dashboard" element={<CreatorDashboard />} />
+            <Route path="/comparison-results" element={<ComparisonResults />} />
           </Routes>
         </main>
         <Footer />
@@ -31,4 +34,10 @@ function App() {
   );
 }
 
+
 export default App;
+
+
+
+
+
